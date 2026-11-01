@@ -93,7 +93,7 @@ public class MiscellaniaMonitorPlugin extends Plugin
 			.panel(panel)
 			.build();
 		clientToolbar.addNavigation(navigationButton);
-		refreshPanel(isInKingdom());
+		clientThread.invokeLater(() -> refreshPanel(isInKingdom()));
 	}
 
 	@Override
