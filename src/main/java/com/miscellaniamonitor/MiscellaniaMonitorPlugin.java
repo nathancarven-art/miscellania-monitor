@@ -53,7 +53,6 @@ import net.runelite.client.ui.NavigationButton;
 )
 public class MiscellaniaMonitorPlugin extends Plugin
 {
-	private static final Gson GSON = new Gson();
 	private static final Type COLLECTION_LOG_TYPE = new TypeToken<ArrayList<CollectionLogEntry>>() {}.getType();
 	private static final DateTimeFormatter COLLECTION_LOG_DATE = DateTimeFormatter
 		.ofPattern("dd MMM yyyy HH:mm").withZone(ZoneId.systemDefault());
@@ -63,6 +62,7 @@ public class MiscellaniaMonitorPlugin extends Plugin
 	private static final Set<Integer> KINGDOM_REGIONS = new HashSet<>(Arrays.asList(10044, 10300));
 
 	@Inject private Client client;
+	@Inject private Gson gson;
 	@Inject private ClientToolbar clientToolbar;
 	@Inject private ClientThread clientThread;
 	@Inject private ConfigManager configManager;
@@ -265,7 +265,7 @@ public class MiscellaniaMonitorPlugin extends Plugin
 				lastLoggedCollectionItems = collectionItems;
 				lastLoggedCollectionAt = nowMillis;
 				configManager.setRSProfileConfiguration("miscellaniamonitor", "collectionLog",
-					GSON.toJson(collectionHistory));
+					gson.toJson(collectionHistory));
 			}
 		}
 		String collectionLog = formatCollectionLog();
@@ -294,7 +294,7 @@ public class MiscellaniaMonitorPlugin extends Plugin
 		{
 			try
 			{
-				List<CollectionLogEntry> savedEntries = GSON.fromJson(savedLog, COLLECTION_LOG_TYPE);
+				List<CollectionLogEntry> savedEntries = gson.fromJson(savedLog, COLLECTION_LOG_TYPE);
 				if (savedEntries != null)
 				{
 					collectionHistory.addAll(savedEntries);
