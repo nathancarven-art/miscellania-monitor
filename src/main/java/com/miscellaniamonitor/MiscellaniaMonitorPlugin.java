@@ -48,8 +48,7 @@ import net.runelite.client.ui.NavigationButton;
 @PluginDescriptor(
 	name = "Miscellania Monitor",
 	description = "Read-only upkeep and reset monitor for Managing Miscellania",
-	tags = {"kingdom", "approval", "coffer", "upkeep"},
-	enabledByDefault = false
+	tags = {"kingdom", "approval", "coffer", "upkeep"}
 )
 public class MiscellaniaMonitorPlugin extends Plugin
 {
